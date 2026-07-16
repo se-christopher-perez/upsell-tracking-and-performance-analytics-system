@@ -1,7 +1,38 @@
 from flask import Flask, request, session
 from flask_restful import Resource
+from sqlalchemy.exc import IntegrityError
+
 from config import app, db, api
 from models import User, Bill, Item, Interaction, Term
+
+class Signup(Resource):
+
+    def post(self):
+
+        data = request.get_json()
+
+        username = data["username"]
+        password = data["password"]
+
+        user = User (
+            
+            username = username
+
+        )
+
+        user.password_hash = password
+
+        try:
+
+            db.session.add(user)
+            db.session.commit()
+
+            session["user_id"] = user.id
+
+            return user.to_dict(), 201
+        
+        except IntegrityError:
+            return {"error": "422 Inprocessable Entity"}, 422
 
 class Login(Resource):
 
@@ -40,6 +71,7 @@ class CheckSession(Resource):
         return user.to_dict(), 200
 
 
+api.add_resource(Signup, "/signup")
 api.add_resource(Login, "/login")
 api.add_resource(Logout, "/logout")
 api.add_resource(CheckSession, "/check_session")
