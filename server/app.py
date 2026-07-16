@@ -12,7 +12,7 @@ def update_fields(obj, data, fields):
     for field in fields:
 
         if field in data:
-
+            
             setattr(obj, field, data[field])
 
 class Signup(Resource):
@@ -171,6 +171,53 @@ class BillByID(Resource):
 
         return bill.to_dict(), 200
 
+    def patch(self, id):
+
+        bill = Bill.query.filter_by(id=id).first()
+
+        data = request.get_json()
+
+        try:
+
+            update_fields(bill, data, ("total", "tip"))
+
+            for item_data in data.get("items", []):
+
+                item = Item.query.filter_by(id=item_data["id"], bill_id=bill.id).first()
+
+                if not item:
+                    raise ValueError(f"Item {item_data['id']} not found on this bill")
+
+                update_fields(item, item_data, ("item_name", "category", "price", "quantity"))
+
+                for interaction_data in item_data.get("interactions", []):
+
+                    interaction = Interaction.query.filter_by(id=interaction_data["id"], item_id=item.id).first()
+
+                    if not interaction:
+                        raise ValueError(f"Interaction {interaction_data['id']} not found on this item")
+
+                    update_fields(interaction, interaction_data, ("approach", "upsell", "feedback", "customer_gender", "customer_carded", "customer_repeat"))
+
+                    for term_data in interaction_data.get("terms", []):
+
+                        term = Term.query.filter_by(id=term_data["id"], interaction_id=interaction.id).first()
+
+                        if not term:
+                            raise ValueError(f"Term {term_data['id']} not found on this interaction")
+
+                        update_fields(term, term_data, ("term",))
+
+            db.session.commit()
+
+        except (ValueError, KeyError) as error:
+
+            db.session.rollback()
+
+            return {"error": str(error)}, 422
+
+        return bill.to_dict(), 200
+    
     def delete(self, id):
 
         bill = Bill.query.filter_by(id=id).first()
@@ -184,7 +231,6 @@ class BillByID(Resource):
         return {}, 204
         
 
-
 api.add_resource(Signup, "/signup")
 api.add_resource(Login, "/login")
 api.add_resource(Logout, "/logout")
@@ -193,4 +239,4 @@ api.add_resource(Bills, "/bills")
 api.add_resource(BillByID, "/bills/<int:id>")
 
 if __name__ == "__main__":
-    app.run(port=5555)
+    app.run(port=5556)
