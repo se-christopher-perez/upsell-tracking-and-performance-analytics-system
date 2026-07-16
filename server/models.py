@@ -13,7 +13,7 @@ class User(db.Model, SerializerMixin):
     username = db.Column(db.String, unique=True, nullable=False)
     _password_hash = db.Column(db.String, nullable=False)
 
-    bills = db.relationship("Bill", back_populates="user")
+    bills = db.relationship("Bill", back_populates="user", cascade="all, delete-orphan")
 
     @property
     def password_hash(self):
@@ -39,7 +39,7 @@ class Bill(db.Model, SerializerMixin):
     created_at = db.Column(db.Date)
 
     user = db.relationship("User", back_populates="bills")
-    items = db.relationship("Item", back_populates="bill")
+    items = db.relationship("Item", back_populates="bill", cascade="all, delete-orphan")
 
 class Item(db.Model, SerializerMixin):
 
@@ -55,7 +55,7 @@ class Item(db.Model, SerializerMixin):
     quantity = db.Column(db.Integer)
 
     bill = db.relationship("Bill", back_populates="items")
-    interactions = db.relationship("Interaction", back_populates="item")
+    interactions = db.relationship("Interaction", back_populates="item", cascade="all, delete-orphan")
 
 class Interaction(db.Model, SerializerMixin):
 
@@ -73,7 +73,7 @@ class Interaction(db.Model, SerializerMixin):
     customer_repeat = db.Column(db.Boolean)
 
     item = db.relationship("Item", back_populates="interactions")
-    terms = db.relationship("Term", back_populates="interaction")
+    terms = db.relationship("Term", back_populates="interaction", cascade="all, delete-orphan")
 
 class Term(db.Model, SerializerMixin):
 
