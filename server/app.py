@@ -7,6 +7,18 @@ from datetime import datetime
 from config import app, db, api
 from models import User, Bill, Item, Interaction, Term
 
+@app.before_request
+def logged_in():
+
+    open_routes = ["login", "signup"]
+
+    if request.endpoint in open_routes:
+        return
+
+    if not session.get("user_id"):
+        return {"error": "Unauthorized"}, 401
+
+
 def update_fields(obj, data, fields):
 
     for field in fields:
@@ -231,12 +243,12 @@ class BillByID(Resource):
         return {}, 204
         
 
-api.add_resource(Signup, "/signup")
-api.add_resource(Login, "/login")
-api.add_resource(Logout, "/logout")
-api.add_resource(CheckSession, "/check_session")
-api.add_resource(Bills, "/bills")
-api.add_resource(BillByID, "/bills/<int:id>")
+api.add_resource(Signup, "/signup", endpoint="signup")
+api.add_resource(Login, "/login", endpoint="login")
+api.add_resource(Logout, "/logout", endpoint="logout")
+api.add_resource(CheckSession, "/check_session", endpoint="check_session")
+api.add_resource(Bills, "/bills", endpoint="bills")
+api.add_resource(BillByID, "/bills/<int:id>", endpoint="bill_by_id")
 
 if __name__ == "__main__":
     app.run(port=5556)
