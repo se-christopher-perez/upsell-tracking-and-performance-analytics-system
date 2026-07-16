@@ -18,7 +18,6 @@ def logged_in():
     if not session.get("user_id"):
         return {"error": "Unauthorized"}, 401
 
-
 def update_fields(obj, data, fields):
 
     for field in fields:
@@ -27,14 +26,28 @@ def update_fields(obj, data, fields):
             
             setattr(obj, field, data[field])
 
+def hidden_forbidden_content(bill, user_id):
+
+    if not bill:
+        return {"error": "Bill not found"}, 404
+    
+    if bill.user_id != user_id:
+        return {"error": "Forbidden Content"}, 403
+    
+    return None
+
+
 class Signup(Resource):
 
     def post(self):
 
         data = request.get_json()
 
-        username = data["username"]
-        password = data["password"]
+        username = data.get("username")
+        password = data.get("password")
+
+        if not username or not password:
+            return {"error": "username and password are required"}, 422
 
         user = User (
             
@@ -84,9 +97,6 @@ class CheckSession(Resource):
     def get(self):
 
         user_id = session.get("user_id")
-
-        if not user_id:
-            return {"error": "Not logged in"}, 401
         
         user = User.query.filter_by(id=user_id).first()
 
@@ -96,10 +106,7 @@ class Bills(Resource):
 
     def get(self):
 
-        user_id = request.args.get("user_id")
-
-        if not user_id:
-            return {"error": "user_id query param is required"}, 400
+        user_id = session.get("user_id")
         
         bills = Bill.query.filter_by(user_id=user_id).all()
 
@@ -176,16 +183,27 @@ class BillByID(Resource):
 
     def get(self, id):
 
+        user_id = session.get("user_id")
+
         bill = Bill.query.filter_by(id=id).first()
 
-        if not bill:
-            return {"error": "No bill here"}, 404
+        error = hidden_forbidden_content(bill, user_id)
+
+        if error:
+            return error
 
         return bill.to_dict(), 200
 
     def patch(self, id):
 
+        user_id = session.get("user_id")
+
         bill = Bill.query.filter_by(id=id).first()
+
+        error = hidden_forbidden_content(bill, user_id)
+
+        if error:
+            return error
 
         data = request.get_json()
 
@@ -232,17 +250,20 @@ class BillByID(Resource):
     
     def delete(self, id):
 
+        user_id = session.get("user_id")
+
         bill = Bill.query.filter_by(id=id).first()
 
-        if not bill:
-            return {"error": "No bill here"}, 404
+        error = hidden_forbidden_content(bill, user_id)
+
+        if error:
+            return error
         
         db.session.delete(bill)
         db.session.commit()
 
         return {}, 204
         
-
 api.add_resource(Signup, "/signup", endpoint="signup")
 api.add_resource(Login, "/login", endpoint="login")
 api.add_resource(Logout, "/logout", endpoint="logout")
