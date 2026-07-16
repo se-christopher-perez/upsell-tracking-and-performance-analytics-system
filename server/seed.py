@@ -32,25 +32,25 @@ with app.app_context():
 
     print("🌱 Seeded Users 🌱")
 
-    bill_1 = Bill(user_id = user_1.id, total = 25.49, tip = 5.00, created_at=datetime.now().date())  
+    bill_1 = Bill(user_id = user_1.id, total = 25.49, tip = 5.00, created_at = datetime.now().date())  
 
-    bill_2 = Bill(user_id = user_1.id, total = 21.00, tip = 4.00, created_at=datetime.now().date())   
+    bill_2 = Bill(user_id = user_1.id, total = 21.00, tip = 4.00, created_at = datetime.now().date())   
 
-    bill_3 = Bill(user_id = user_1.id, total = 14.99, tip = 6.50, created_at=datetime.now().date())   
+    bill_3 = Bill(user_id = user_1.id, total = 14.99, tip = 6.50, created_at = datetime.now().date())   
 
-    bill_4 = Bill(user_id = user_2.id, total = 12.00, tip = 2.50, created_at=datetime.now().date())   
+    bill_4 = Bill(user_id = user_2.id, total = 12.00, tip = 2.50, created_at = datetime.now().date())   
 
-    bill_5 = Bill(user_id = user_2.id, total = 38.99, tip = 8.00, created_at=datetime.now().date())   
+    bill_5 = Bill(user_id = user_2.id, total = 38.99, tip = 8.00, created_at = datetime.now().date())   
 
-    bill_6 = Bill(user_id = user_3.id, total = 14.99, tip = 3.00, created_at=datetime.now().date())   
+    bill_6 = Bill(user_id = user_3.id, total = 14.99, tip = 3.00, created_at = datetime.now().date())   
 
-    bill_7 = Bill(user_id = user_3.id, total = 35.99, tip = 5.50, created_at=datetime.now().date())   
+    bill_7 = Bill(user_id = user_3.id, total = 35.99, tip = 5.50, created_at = datetime.now().date())   
 
-    bill_8 = Bill(user_id = user_3.id, total = 22.50, tip = 1.50, created_at=datetime.now().date())   
+    bill_8 = Bill(user_id = user_3.id, total = 22.50, tip = 1.50, created_at = datetime.now().date())   
 
-    bill_9 = Bill(user_id = user_4.id, total = 29.98, tip = 4.50, created_at=datetime.now().date())   
+    bill_9 = Bill(user_id = user_4.id, total = 29.98, tip = 4.50, created_at = datetime.now().date())   
 
-    bill_10 = Bill(user_id = user_4.id, total = 22.50, tip = 7.00, created_at=datetime.now().date())  
+    bill_10 = Bill(user_id = user_4.id, total = 22.50, tip = 7.00, created_at = datetime.now().date())  
 
     db.session.add_all([
         bill_1, bill_2, bill_3, bill_4, bill_5,

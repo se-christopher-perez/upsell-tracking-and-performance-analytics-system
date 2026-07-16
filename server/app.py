@@ -1,3 +1,4 @@
+
 from flask import Flask, request, session
 from flask_restful import Resource
 from sqlalchemy.exc import IntegrityError
@@ -35,7 +36,6 @@ def hidden_forbidden_content(bill, user_id):
         return {"error": "Forbidden Content"}, 403
     
     return None
-
 
 class Signup(Resource):
 
