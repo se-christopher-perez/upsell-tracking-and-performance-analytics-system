@@ -1,8 +1,11 @@
 
 import { React, useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 
 
 function CreateBill() {
+
+  const navigate = useNavigate()
 
   const [tip, setTip] = useState(0)
 
@@ -17,6 +20,8 @@ function CreateBill() {
   const [customerCarded, setCustomerCarded] = useState(false)
   const [customerRepeat, setCustomerRepeat] = useState(false)
   const [feedback, setFeedback] = useState("")
+
+  const [error, setError] = useState(null)
 
   const [terms, setTerms] = useState([])
 
@@ -40,148 +45,227 @@ function CreateBill() {
 
   }
 
+  function handleSubmit(e) {
+
+    e.preventDefault()
+
+    const total = price * quantity
+
+    const new_bill = {
+
+      total: total,
+      tip: tip,
+      created_at: new Date().toISOString().split("T")[0],
+      items: [
+        {
+          item_name: itemName,
+          category: category,
+          price: Number(price),
+          quantity: Number(quantity),
+          interactions: [
+            {
+              approach: approach,
+              upsell: upsell,
+              feedback: feedback,
+              customer_gender: customerGender,
+              customer_carded: customerCarded,
+              customer_repeat: customerRepeat,
+              terms: terms.map((term) => ({ term: term })),
+            },
+          ],
+        },
+      ],
+
+    }
+
+    fetch("http://localhost:5556/bills", {
+
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify(new_bill),
+
+    })
+      .then((r) => {
+
+        return r.json().then((data) => ({ ok: r.ok, data }))
+
+      })
+      .then(({ ok, data }) => {
+
+        if (ok) {
+
+          navigate("/check-bills")
+
+        } else {
+
+          setError(data.error)
+
+          setTimeout(() => setError(null), 3000)
+
+        }
+
+      })
+      .catch((err) => {
+
+        setError(err.message)
+
+        setTimeout(() => setError(null), 3000)
+
+      })
+
+  }
+
   return (
 
     <>
 
       <div className="main-createbill-container">
 
-        <p>Create bill Page</p>
+        <form onSubmit={handleSubmit}>
 
-        <div className="item-container">
+          <h2>Create Bill</h2>
 
-          <h3>Item</h3>
+          <div className="item-container">
 
-          <div className="item-name-container">
+            <h3>Item</h3>
 
-            <label htmlFor="item-name">Item: </label>
+            <div className="item-name-container">
 
-            <select id="item-name" value={itemName} onChange={(e) => setItemName(e.target.value)}          >
-              <option value="">Select item</option>
-              <option value="cheeseburger">cheeseburger</option>
-              <option value="ribeye">ribeye</option>
-              <option value="buffalo wings">buffalo wings</option>
-              <option value="margarita">margarita</option>
-              <option value="martini">martini</option>
-            </select>
+              <label htmlFor="item-name">Item: </label>
 
-          </div>
+              <select id="item-name" value={itemName} onChange={(e) => setItemName(e.target.value)}          >
+                <option value="">Select item</option>
+                <option value="cheeseburger">cheeseburger</option>
+                <option value="ribeye">ribeye</option>
+                <option value="buffalo wings">buffalo wings</option>
+                <option value="margarita">margarita</option>
+                <option value="martini">martini</option>
+              </select>
 
-          <div className="item-category-container">
+            </div>
 
-            <label htmlFor="item-category">Category: </label>
+            <div className="item-category-container">
 
-            <select id="item-category" value={category} onChange={(e) => setCategory(e.target.value)} >
-              <option value="">Select category</option>
-              <option value="beverage">beverage</option>
-              <option value="food">food</option>
-            </select>
+              <label htmlFor="item-category">Category: </label>
 
-          </div>
+              <select id="item-category" value={category} onChange={(e) => setCategory(e.target.value)} >
+                <option value="">Select category</option>
+                <option value="beverage">beverage</option>
+                <option value="food">food</option>
+              </select>
 
-          <div className="item-price-container">
+            </div>
 
-            <label htmlFor="item-price">Price: </label>
+            <div className="item-price-container">
 
-            <input id="item-price" type="number" value={price} onChange={(e) => setPrice(e.target.value)} />
+              <label htmlFor="item-price">Price: </label>
 
-          </div>
+              <input id="item-price" type="number" value={price} onChange={(e) => setPrice(e.target.value)} />
 
-          <div className="item-quantity-container">
+            </div>
 
-            <label htmlFor="item-quantity">Quantity: </label>
+            <div className="item-quantity-container">
 
-            <input id="item-quantity" type="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} />
+              <label htmlFor="item-quantity">Quantity: </label>
 
-          </div>
+              <input id="item-quantity" type="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} />
 
-        </div>
-
-        <div className="interactaction-container">
-
-          <h3>Interaction</h3>
-
-          <div className="interactaction-approach-container">
-
-            <label htmlFor="interactaction-approach">Approach: </label>
-
-            <select id="interactaction-approach" value={approach} onChange={(e) => setApproach(e.target.value)} >
-              <option value="">Select approach</option>
-              <option value="friendly">friendly</option>
-              <option value="casual">casual</option>
-              <option value="robotic">robotic</option>
-              <option value="scripted">scripted</option>
-              <option value="humor">humor</option>
-              <option value="honesty">honesty</option>
-            </select>
+            </div>
 
           </div>
 
-          <div className="interaction-customer-gender-container">
+          <div className="interactaction-container">
 
-            <label htmlFor="interactaction-customer-gender">Customer Gender: </label>
+            <h3>Interaction</h3>
 
-            <select id="interactaction-customer-gender" value={customerGender} onChange={(e) => setCustomerGender(e.target.value)}   >
-              <option value="">Select gender</option>
-              <option value="male">male</option>
-              <option value="female">female</option>
-            </select>
+            <div className="interactaction-approach-container">
 
-          </div>
+              <label htmlFor="interactaction-approach">Approach: </label>
 
-          <div className="interactions-checks-container">
+              <select id="interactaction-approach" value={approach} onChange={(e) => setApproach(e.target.value)} >
+                <option value="">Select approach</option>
+                <option value="friendly">friendly</option>
+                <option value="casual">casual</option>
+                <option value="robotic">robotic</option>
+                <option value="scripted">scripted</option>
+                <option value="humor">humor</option>
+                <option value="honesty">honesty</option>
+              </select>
 
-            <label htmlFor="interactaction-upsell">Upsell? </label>
+            </div>
 
-            <input id="interactaction-upsell" type="checkbox" checked={upsell} onChange={(e) => setUpsell(e.target.checked)} />
+            <div className="interaction-customer-gender-container">
 
-            <label htmlFor="interactaction-customer-carded">Carded? </label>
+              <label htmlFor="interactaction-customer-gender">Customer Gender: </label>
 
-            <input id="interactaction-customer-carded" type="checkbox" checked={customerCarded} onChange={(e) => setCustomerCarded(e.target.checked)} />
+              <select id="interactaction-customer-gender" value={customerGender} onChange={(e) => setCustomerGender(e.target.value)}   >
+                <option value="">Select gender</option>
+                <option value="male">male</option>
+                <option value="female">female</option>
+              </select>
 
-            <label htmlFor="interactaction-customer-repeat">Repeat Customer? </label>
+            </div>
 
-            <input id="interactaction-customer-repeat" type="checkbox" checked={customerRepeat} onChange={(e) => setCustomerRepeat(e.target.checked)} />
+            <div className="interactions-checks-container">
 
-          </div>
+              <label htmlFor="interactaction-upsell">Upsell? </label>
 
-          <div className="interactaction-feedback-container">
+              <input id="interactaction-upsell" type="checkbox" checked={upsell} onChange={(e) => setUpsell(e.target.checked)} />
 
-            <label htmlFor="interactaction-feedback">Feedback: </label>
+              <label htmlFor="interactaction-customer-carded">Carded? </label>
 
-            <input id="interactaction-feedback" type="text" value={feedback} onChange={(e) => setFeedback(e.target.value)} />
+              <input id="interactaction-customer-carded" type="checkbox" checked={customerCarded} onChange={(e) => setCustomerCarded(e.target.checked)} />
 
-          </div>
+              <label htmlFor="interactaction-customer-repeat">Repeat Customer? </label>
+
+              <input id="interactaction-customer-repeat" type="checkbox" checked={customerRepeat} onChange={(e) => setCustomerRepeat(e.target.checked)} />
+
+            </div>
+
+            <div className="interactaction-feedback-container">
+
+              <label htmlFor="interactaction-feedback">Feedback: </label>
+
+              <input id="interactaction-feedback" type="text" value={feedback} onChange={(e) => setFeedback(e.target.value)} />
+
+            </div>
 
 
-
-        </div>
-
-        <div className="tip-container">
-
-          <h3>Tip</h3>
-
-          <label htmlFor="tip-input">Tip: </label>
-
-          <input id="tip-input" type="text" value={tip} onChange={(e) => setTip(e.target.value)} />
-
-        </div>
-
-        <div className="terms-container">
-
-          <h3>Terms</h3>
-
-          <div className="terms-list-containers">
-
-            {foodTerms.map((term) => {
-
-              return <p className={terms.includes(term) ? "term-selected" : "term-deselected"} onClick={() => toggleTerm(term)}>{term}</p>
-
-            })}
 
           </div>
 
-        </div>
+          <div className="tip-container">
+
+            <h3>Tip</h3>
+
+            <label htmlFor="tip-input">Tip: </label>
+
+            <input id="tip-input" type="text" value={tip} onChange={(e) => setTip(e.target.value)} />
+
+          </div>
+
+          <div className="terms-container">
+
+            <h3>Terms</h3>
+
+            <div className="terms-list-containers">
+
+              {foodTerms.map((term) => {
+
+                return <p className={terms.includes(term) ? "term-selected" : "term-deselected"} onClick={() => toggleTerm(term)} key={term}>{term}</p>
+
+              })}
+
+            </div>
+
+          </div>
+
+          <input type="submit" value="Create New Bill" />
+
+          {error && <p className="error">{error}</p>}
+
+        </form>
 
       </div>
 
