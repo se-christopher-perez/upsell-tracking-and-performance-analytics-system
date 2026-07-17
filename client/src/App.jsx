@@ -1,7 +1,12 @@
 import React from "react";
+import { Route, Routes, Navigate } from "react-router-dom";
 import { useAuth } from "./context/AuthContext"
+
 import Login from "./components/Login";
 import Navbar from "./components/Navbar";
+
+import CreateBillPage from "./pages/CreateBillPage"
+import CheckBillsPage from "./pages/CheckBillsPage"
 
 function App() {
 
@@ -24,6 +29,13 @@ function App() {
 
             <h1>Welcome, {user.username}!</h1>
             <Navbar />
+            <Routes>
+
+              <Route path="check-bills" element={<CheckBillsPage />} />
+              <Route path="/create-bill" element={<CreateBillPage />} />
+              <Route path="*" element={<Navigate to="/create-bill" />} />
+
+            </Routes>
 
           </>
 

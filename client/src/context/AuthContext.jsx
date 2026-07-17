@@ -17,7 +17,7 @@ export function AuthProvider({ children }) {
         })
         .then((r) => {
 
-            r.ok ? r.json() : null
+            return r.ok ? r.json() : null
 
         })
         .then((data) => setUser(data))
