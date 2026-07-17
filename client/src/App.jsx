@@ -8,6 +8,8 @@ import Navbar from "./components/Navbar";
 import CreateBillPage from "./pages/CreateBillPage"
 import CheckBillsPage from "./pages/CheckBillsPage"
 
+import "./App.css"
+
 function App() {
 
   const { user, loading } = useAuth()

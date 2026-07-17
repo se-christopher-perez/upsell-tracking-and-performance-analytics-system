@@ -1,5 +1,12 @@
-.main-app-container{
 
-  color: black;
+.term-selected{
+
+  color: green;
+
+}
+
+.term-deselected{
+
+  color: red;
 
 }
