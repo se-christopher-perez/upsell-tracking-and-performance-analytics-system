@@ -3,7 +3,7 @@ import { createContext, useContext, useState, useEffect } from "react"
 
 const AuthContext = createContext()
 
-export function AuthProvider({ chrildren }) {
+export function AuthProvider({ children }) {
 
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
@@ -31,7 +31,7 @@ export function AuthProvider({ chrildren }) {
     return (
 
         <AuthContext.Provider value={value}>
-            {chrildren}
+            {children}
         </AuthContext.Provider>
 
     )
