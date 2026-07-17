@@ -1,5 +1,6 @@
 import React from "react";
 import { useAuth } from "./context/AuthContext"
+import Login from "./components/Login";
 
 function App() {
 
@@ -21,7 +22,7 @@ function App() {
           <h1>Welcome, {user.username}!</h1>
         ): (
 
-          <h1>Login</h1>
+          <Login />
 
         )}
 

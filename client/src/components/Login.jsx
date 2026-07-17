@@ -1,6 +1,9 @@
 import { React, useState } from "react";
+import { useAuth } from "../context/AuthContext"
 
-function Login({ onLogin }) {
+function Login() {
+
+    const { setUser } = useAuth()
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -8,23 +11,35 @@ function Login({ onLogin }) {
 
     function handleSubmit(e) {
         e.preventDefault();
+
         setError(null);
 
         fetch("http://localhost:5556/login", {
+
             method: "POST",
             headers: { "Content-Type": "application/json" },
             credentials: "include",
-            body: JSON.stringify({ username, password }),
+            body: JSON.stringify({ username, password })
+
         })
-            .then((r) => r.json().then((data) => ({ ok: r.ok, data })))
+            .then((r) => {
+
+                return r.json().then((data) => ({ ok: r.ok, data }))
+
+            })
             .then(({ ok, data }) => {
+
                 if (ok) {
-                    onLogin(data);
+
+                    setUser(data)
+
                 } else {
-                    setError(data.error);
+
+                    setError(data.error)
+
                 }
             })
-            .catch((err) => setError("Something went wrong"));
+            .catch((err) => setError("Something went wrong"))
     }
 
 
