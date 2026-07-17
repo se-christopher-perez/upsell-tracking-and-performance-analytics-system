@@ -1,6 +1,7 @@
 import React from "react";
 import { useAuth } from "./context/AuthContext"
 import Login from "./components/Login";
+import Navbar from "./components/Navbar";
 
 function App() {
 
@@ -12,15 +13,21 @@ function App() {
 
   }
 
-  return(
+  return (
 
     <>
       <div className="main-app-container">
 
         {user ? (
 
-          <h1>Welcome, {user.username}!</h1>
-        ): (
+          <>
+
+            <h1>Welcome, {user.username}!</h1>
+            <Navbar />
+
+          </>
+
+        ) : (
 
           <Login />
 
