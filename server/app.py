@@ -11,6 +11,9 @@ from models import User, Bill, Item, Interaction, Term
 @app.before_request
 def logged_in():
 
+    if request.method == "OPTIONS":
+        return
+
     open_routes = ["login", "signup"]
 
     if request.endpoint in open_routes:
