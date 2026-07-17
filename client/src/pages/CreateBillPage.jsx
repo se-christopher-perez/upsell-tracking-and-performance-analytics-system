@@ -20,6 +20,8 @@ function CreateBill() {
 
   const [terms, setTerms] = useState([])
 
+  const foodTerms = ["spicy", "juicy", "savory", "sweet", "tangy", "zesty", "crisp", "tart", "smoky", "creamy", "fresh", "buttery"]
+
   function toggleTerm(term) {
 
     if (terms.includes(term)) {
@@ -171,13 +173,11 @@ function CreateBill() {
 
           <div className="terms-list-containers">
 
-            <p className={terms.includes("spicy") ? "term-selected" : "term-deselected"} onClick={() => toggleTerm("spicy")}>Spicy</p>
+            {foodTerms.map((term) => {
 
-            <p className={terms.includes("juicy") ? "term-selected" : "term-deselected"} onClick={() => toggleTerm("juicy")}>Juicy</p>
+              return <p className={terms.includes(term) ? "term-selected" : "term-deselected"} onClick={() => toggleTerm(term)}>{term}</p>
 
-            <p className={terms.includes("savory") ? "term-selected" : "term-deselected"} onClick={() => toggleTerm("savory")}>Savory</p>
-
-            <p className={terms.includes("sweet") ? "term-selected" : "term-deselected"} onClick={() => toggleTerm("sweet")}>Sweet</p>
+            })}
 
           </div>
 
