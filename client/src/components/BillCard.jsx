@@ -2,13 +2,20 @@
 
 import { React, useState } from "react";
 import ItemCard from "./ItemCard";
+import EditForm from "./EditForm";
 
 
-function BillCard({ bill, onDelete }) {
+function BillCard({ bill, onDelete, onUpdate }) {
 
     const [deleted, setDeleted] = useState(false)
+    const [isEditing, setIsEditing] = useState(false)
 
-    function handleDelete(){
+    const [error, setError] = useState(null)
+
+    const [editedTotal, setEditedTotal] = useState(bill.total)
+    const [editedTip, setEditedTip] = useState(bill.tip)
+
+    function handleDelete() {
 
         fetch(`http://localhost:5556/bills/${bill.id}`, {
 
@@ -16,32 +23,110 @@ function BillCard({ bill, onDelete }) {
             credentials: "include"
 
         })
-        .then((r) => {
+            .then((r) => {
 
-            if (r.ok) {
+                if (r.ok) {
 
-                setDeleted(true)
+                    setDeleted(true)
 
-                setTimeout(() => {
+                    setTimeout(() => {
 
-                    onDelete(bill.id)
+                        onDelete(bill.id)
 
-                }, 3000)
+                    }, 3000)
 
-            }
+                }
+
+            })
+            .catch((err) => {
+
+                console.log(err.message)
+
+            })
+
+    }
+
+    function handleCancel() {
+
+        setEditedTotal(bill.total)
+
+        setEditedTip(bill.tip)
+
+        setIsEditing(false)
+
+    }
+
+    function handleSave() {
+
+        const updated_bill = {
+
+            total: editedTotal,
+            tip: editedTip
+
+        }
+
+        fetch(`http://localhost:5556/bills/${bill.id}`, {
+
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            credentials: "include",
+            body: JSON.stringify(updated_bill)
 
         })
-        .catch((err) => {
+            .then((r) => {
 
-            console.log(err.message)
+                return r.json().then((data) => ({ ok: r.ok, data }))
 
-        })
+            })
+            .then(({ ok, data }) => {
+
+                if (ok) {
+
+                    onUpdate(data)
+
+                    setIsEditing(false)
+
+                } else {
+
+                    setError(data.error)
+
+                }
+
+            })
+            .catch((err) => {
+
+                setError(err.message)
+
+            })
 
     }
 
     if (deleted) {
 
         return <p><b>Deleted</b></p>
+
+    }
+
+    if (isEditing) {
+
+        return (
+
+            <>
+
+                <div className="main-billcard-container">
+
+                    <h3>Editing Bill #{bill.id}</h3>
+
+                    <EditForm bill={bill} editedTip={editedTip} setEditedTip={setEditedTip} editedTotal={editedTotal} setEditedTotal={setEditedTotal} />
+
+                    <button onClick={() => handleSave()}>Save</button>
+                    <button onClick={() => setIsEditing(false)}>Cancel</button>
+
+                </div>
+
+            </>
+
+        )
 
     }
 
@@ -87,9 +172,9 @@ function BillCard({ bill, onDelete }) {
 
             </div>
 
-            <div>
+            <div className="button-container">
 
-                <button>Edit</button>
+                <button onClick={() => setIsEditing(true)}>Edit</button>
                 <button onClick={handleDelete}>Delete</button>
 
             </div>
