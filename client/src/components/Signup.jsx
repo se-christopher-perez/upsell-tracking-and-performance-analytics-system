@@ -76,8 +76,6 @@ function Signup() {
 
                             <input type="submit" value="Sign Up" />
 
-                            {error && <p className="error">{error}</p>}
-
                         </form>
 
                         <br />
@@ -87,6 +85,12 @@ function Signup() {
                     </div>
 
                 </div>
+
+            </div>
+
+            <div>
+
+                {error && <p className="error"><br />{error}</p>}
 
             </div>
 

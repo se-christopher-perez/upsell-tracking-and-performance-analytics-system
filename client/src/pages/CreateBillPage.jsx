@@ -138,8 +138,6 @@ function CreateBill() {
 
         <form onSubmit={handleSubmit}>
 
-          <h2>Create Bill</h2>
-
           {error && <p className="error">{error}</p>}
 
           <div className="item-container">
@@ -148,7 +146,7 @@ function CreateBill() {
 
             <div className="item-name-container">
 
-              <label htmlFor="item-name">Item: </label>
+              <label htmlFor="item-name">Name: </label>
 
               <select id="item-name" value={itemName} onChange={(e) => setItemName(e.target.value)}          >
                 <option value="">Select item</option>
@@ -235,21 +233,9 @@ function CreateBill() {
 
             </div>
 
-            <div className="interactaction-feedback-container">
-
-              <label htmlFor="interactaction-feedback">Feedback: </label>
-
-              <input id="interactaction-feedback" type="text" value={feedback} onChange={(e) => setFeedback(e.target.value)} />
-
-            </div>
-
-
-
           </div>
 
           <div className="tip-container">
-
-            <h3>Tip</h3>
 
             <label htmlFor="tip-input">Tip: </label>
 

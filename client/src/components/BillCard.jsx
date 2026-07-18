@@ -199,7 +199,7 @@ function BillCard({ bill, onDelete, onUpdate }) {
 
                 <div className="main-billcard-container">
 
-                    <h2>Editing Bill #{bill.id}</h2>
+                    <h2>Bill #{bill.id}</h2>
 
                     {error && <p className="error">{error}</p>}
 
@@ -242,9 +242,9 @@ function BillCard({ bill, onDelete, onUpdate }) {
 
                     <div className="bill-tips-total-container">
 
-                        <p><b>Total:</b> {bill.total}</p>
+                        <p><b>Total:</b> ${bill.total}</p>
 
-                        <p><b>Tip:</b> {bill.tip}</p>
+                        <p><b>Tip:</b> ${bill.tip}</p>
 
                         <p><b>Date:</b> {bill.created_at}</p>
 

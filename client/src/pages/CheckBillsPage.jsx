@@ -2,6 +2,8 @@
 import { React, useState, useEffect } from "react";
 import BillCard from "../components/BillCard";
 
+import loadingGif from "../assets/loading.gif"
+
 
 function CheckBill() {
 
@@ -89,7 +91,7 @@ function CheckBill() {
   }
 
   if (loading) {
-    return <p>Loading...</p>
+    return <div className="main-app-container"><img src={loadingGif} alt="Loading..." className="loading-gif" /></div>
   }
 
   return (
@@ -97,8 +99,6 @@ function CheckBill() {
     <>
 
       <div className="main-checkbill-container">
-
-        <h2>Check Bills</h2>
 
         <div className="billcard-container">
 

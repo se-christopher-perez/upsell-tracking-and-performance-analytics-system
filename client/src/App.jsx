@@ -10,6 +10,8 @@ import Navbar from "./components/Navbar";
 import CreateBillPage from "./pages/CreateBillPage"
 import CheckBillsPage from "./pages/CheckBillsPage"
 
+import loadingGif from "./assets/loading.gif"
+
 import "./App.css"
 
 function App() {
@@ -20,7 +22,7 @@ function App() {
 
   if (loading) {
 
-    return <div className="main-app-container"><p>Loading...</p></div>
+    return <div className="main-app-container"><img src={loadingGif} alt="Loading..." className="loading-gif" /></div>
 
   }
 
@@ -31,7 +33,7 @@ function App() {
 
         <div>
 
-          <h1>Tab Tracker</h1>
+          <h1 className="title">🌭 🥙 🍕 🍗 🍟 🍜 🍣 🥡 🥩 🍝 🍔<br/>🥩 🍝 🍔 Upsell Tab Tracker 🍷 🍺 🍸<br/>🍷 🍺 🍸 ☕ 🍾 🍻 🍵  🥃 🍹 🧉 🍶</h1>
 
         </div>
 

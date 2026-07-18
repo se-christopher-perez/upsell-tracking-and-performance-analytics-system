@@ -29,6 +29,22 @@ body {
 
 }
 
+.title{
+
+  text-align: center;
+
+}
+
+.login-container,
+.signup-container {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+
+}
+
 .scrollable-content {
 
   flex: 1;
@@ -36,6 +52,54 @@ body {
 
   min-height: 0;
   padding: 8px;
+
+}
+
+.main-navbar-container {
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 8px;
+
+}
+
+.main-navbar-container nav {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+}
+
+.main-navbar-container nav a {
+
+  text-decoration: none;
+  color: #333;
+
+  font-size: 50px;
+  font-weight: 500;
+
+  padding: 4px 8px;
+
+}
+
+.main-navbar-container nav a.active {
+
+  color: #4a90d9;
+  font-weight: bold;
+
+}
+
+.main-navbar-container nav a:not(:last-child)::after {
+
+  content: "|";
+  margin-left: 10px;
+  color: #ccc;
+  font-weight: 400;
 
 }
 
@@ -370,4 +434,215 @@ body {
   background-color: #999;
   color: white;
 
+}
+
+.main-createbill-container {
+
+  display: flex;
+  flex-direction: column;
+
+}
+ 
+.main-createbill-container h2 {
+
+  margin: 0 0 10px 0;
+  font-size: 16px;
+  text-align: center;
+
+}
+ 
+.main-createbill-container h3 {
+
+  margin: 10px 0 6px 0;
+  font-size: 13px;
+  color: #2c5282;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 4px;
+
+}
+ 
+.item-container,
+.interactaction-container,
+.tip-container,
+.terms-container {
+
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 10px 14px;
+  margin-bottom: 10px;
+  background-color: #fafafa;
+
+}
+ 
+.item-name-container,
+.item-category-container,
+.item-price-container,
+.item-quantity-container,
+.interactaction-approach-container,
+.interaction-customer-gender-container,
+.interactaction-feedback-container {
+
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 8px;
+
+}
+ 
+.item-name-container label,
+.item-category-container label,
+.item-price-container label,
+.item-quantity-container label,
+.interactaction-approach-container label,
+.interaction-customer-gender-container label,
+.interactaction-feedback-container label,
+.tip-container label {
+
+  font-size: 15px;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 2px;
+
+}
+ 
+.main-createbill-container select,
+.main-createbill-container input[type="text"],
+.main-createbill-container input[type="number"] {
+
+  width: 100%;
+  box-sizing: border-box;
+  padding: 6px 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+
+}
+ 
+.main-createbill-container select:focus,
+.main-createbill-container input:focus {
+
+  outline: none;
+  border-color: #4a90d9;
+
+}
+ 
+.interactions-checks-container,
+.interaction-customer-gender-container {
+
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-direction: row;
+
+}
+ 
+.interactions-checks-container label {
+
+  font-size: 15px;
+  color: #555;
+  margin-right: 4px;
+
+}
+ 
+.interactions-checks-container input[type="checkbox"],
+.interaction-customer-gender-container input[type="checkbox"] {
+
+  margin-right: 12px;
+
+}
+ 
+.tip-container {
+
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+}
+ 
+.tip-container h3 {
+
+  margin: 0;
+  border: none;
+  padding: 0;
+
+}
+ 
+.tip-container input {
+
+  width: 80px;
+
+}
+ 
+.terms-list-containers {
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+
+}
+ 
+.term-selected,
+.term-deselected {
+
+  margin: 0;
+  padding: 6px 14px;
+  border-radius: 16px;
+  font-size: 13px;
+  cursor: pointer;
+
+}
+ 
+.term-selected {
+
+  background-color: #4a90d9;
+  color: white;
+
+}
+ 
+.term-deselected {
+
+  background-color: #e8eef5;
+  color: #2c5282;
+
+}
+ 
+.main-createbill-container input[type="submit"] {
+  width: 100%;
+  padding: 8px;
+  border: none;
+  border-radius: 8px;
+  background-color: #4a90d9;
+  color: white;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+  margin-top: 4px;
+
+}
+ 
+.main-createbill-container input[type="submit"]:hover {
+
+  background-color: #3a7bc0;
+
+}
+
+.error{
+
+  font-weight: bold;
+  font-size: 20px;
+  color: red;
+
+  text-align: center;
+
+}
+
+.loading-gif {
+
+  display: block;
+  width: 60px;
+  height: 60px;
+  margin: 40px auto;
+  
 }
