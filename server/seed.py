@@ -63,37 +63,27 @@ with app.app_context():
 
     item_1 = Item(bill_id = bill_1.id, item_name = "cheeseburger", category = "food", price = 14.99, quantity = 1)
 
-    item_2 = Item(bill_id = bill_1.id, item_name = "margarita", category = "beverage", price = 10.50, quantity = 1)
+    item_2 = Item(bill_id = bill_2.id, item_name = "margarita", category = "beverage", price = 10.50, quantity = 2)
 
-    item_3 = Item(bill_id = bill_2.id, item_name = "margarita", category = "beverage", price = 10.50, quantity = 2)
+    item_3 = Item(bill_id = bill_3.id, item_name = "cheeseburger", category = "food", price = 14.99, quantity = 1)
 
-    item_4 = Item(bill_id = bill_3.id, item_name = "cheeseburger", category = "food", price = 14.99, quantity = 1)
+    item_4 = Item(bill_id = bill_4.id, item_name = "martini", category = "beverage", price = 12.00, quantity = 1)
 
-    item_5 = Item(bill_id = bill_4.id, item_name = "martini", category = "beverage", price = 12.00, quantity = 1)
+    item_5 = Item(bill_id = bill_5.id, item_name = "cheeseburger", category = "food", price = 14.99, quantity = 1)
 
-    item_6 = Item(bill_id = bill_5.id, item_name = "cheeseburger", category = "food", price = 14.99, quantity = 1)
+    item_6 = Item(bill_id = bill_6.id, item_name = "cheeseburger", category = "food", price = 14.99, quantity = 1)
 
-    item_7 = Item(bill_id = bill_5.id, item_name = "martini", category = "beverage", price = 12.00, quantity = 2)
+    item_7 = Item(bill_id = bill_7.id, item_name = "margarita", category = "beverage", price = 10.50, quantity = 2)
 
-    item_8 = Item(bill_id = bill_6.id, item_name = "cheeseburger", category = "food", price = 14.99, quantity = 1)
+    item_8 = Item(bill_id = bill_8.id, item_name = "martini", category = "beverage", price = 12.00, quantity = 1)
 
-    item_9 = Item(bill_id = bill_7.id, item_name = "cheeseburger", category = "food", price = 14.99, quantity = 1)
+    item_9 = Item(bill_id = bill_9.id, item_name = "cheeseburger", category = "food", price = 14.99, quantity = 2)
 
-    item_10 = Item(bill_id = bill_7.id, item_name = "margarita", category = "beverage", price = 10.50, quantity = 2)
-
-    item_11 = Item(bill_id = bill_8.id, item_name = "martini", category = "beverage", price = 12.00, quantity = 1)
-
-    item_12 = Item(bill_id = bill_8.id, item_name = "margarita", category = "beverage", price = 10.50, quantity = 1)
-
-    item_13 = Item(bill_id = bill_9.id, item_name = "cheeseburger", category = "food", price = 14.99, quantity = 2)
-
-    item_14 = Item(bill_id = bill_10.id, item_name = "margarita", category = "beverage", price = 10.50, quantity = 1)
-
-    item_15 = Item(bill_id = bill_10.id, item_name = "martini", category = "beverage", price = 12.00, quantity = 1)
+    item_10 = Item(bill_id = bill_10.id, item_name = "margarita", category = "beverage", price = 10.50, quantity = 1)
 
     db.session.add_all([
         item_1, item_2, item_3, item_4, item_5, item_6, item_7, item_8,
-        item_9, item_10, item_11, item_12, item_13, item_14, item_15
+        item_9, item_10
     ])
 
     db.session.commit()
@@ -150,35 +140,11 @@ with app.app_context():
         customer_gender = False, customer_carded = True, customer_repeat = True
     )
 
-    interaction_11 = Interaction(
-        item_id = item_11.id, approach = "humor", upsell = True, feedback = "positive",
-        customer_gender = True, customer_carded = False, customer_repeat = True
-    )
-
-    interaction_12 = Interaction(
-        item_id = item_12.id, approach = "honesty", upsell = False, feedback = "neutral",
-        customer_gender = True, customer_carded = True, customer_repeat = False
-    )
-
-    interaction_13 = Interaction(
-        item_id = item_13.id, approach = "friendly", upsell = True, feedback = "positive",
-        customer_gender = False, customer_carded = True, customer_repeat = True
-    )
-
-    interaction_14 = Interaction(
-        item_id = item_14.id, approach = "casual", upsell = False, feedback = "positive",
-        customer_gender = False, customer_carded = False, customer_repeat = False
-    )
-
-    interaction_15 = Interaction(
-        item_id = item_15.id, approach = "robotic", upsell = True, feedback = "negative",
-        customer_gender = False, customer_carded = True, customer_repeat = False
-    )
-
     db.session.add_all([
+
         interaction_1, interaction_2, interaction_3, interaction_4, interaction_5,
-        interaction_6, interaction_7, interaction_8, interaction_9, interaction_10,
-        interaction_11, interaction_12, interaction_13, interaction_14, interaction_15
+        interaction_6, interaction_7, interaction_8, interaction_9, interaction_10
+
     ])
 
     db.session.commit()
@@ -207,19 +173,11 @@ with app.app_context():
 
     term_11 = Term(interaction_id = interaction_10.id, term = "sweet")
 
-    term_12 = Term(interaction_id = interaction_11.id, term = "crisp")
-
-    term_13 = Term(interaction_id = interaction_12.id, term = "tangy")
-
-    term_14 = Term(interaction_id = interaction_13.id, term = "juicy")
-
-    term_15 = Term(interaction_id = interaction_14.id, term = "zesty")
-
-    term_16 = Term(interaction_id = interaction_15.id, term = "spicy")
-
     db.session.add_all([
-        term_1, term_2, term_3, term_4, term_5, term_6, term_7, term_8,
-        term_9, term_10, term_11, term_12, term_13, term_14, term_15, term_16
+
+        term_1, term_2, term_3, term_4, term_5, term_6,
+        term_7, term_8, term_9, term_10, term_11
+
     ])
 
     db.session.commit()
