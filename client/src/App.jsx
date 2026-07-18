@@ -29,36 +29,46 @@ function App() {
     <>
       <div className="main-app-container">
 
+        <div>
+
+          <h1>Tab Tracker</h1>
+
+        </div>
+
         {user && <Navbar />}
 
-        <Routes>
+        <div className="scrollable-content">
 
-          {user ? (
+          <Routes>
 
-            <>
-              <Route path="/check-bills" element={<CheckBillsPage />} />
+            {user ? (
 
-              <Route path="/create-bill" element={<CreateBillPage />} />
+              <>
+                <Route path="/check-bills" element={<CheckBillsPage />} />
 
-              <Route path="*" element={<Navigate to="/check-bills" />} />
+                <Route path="/create-bill" element={<CreateBillPage />} />
 
-            </>
+                <Route path="*" element={<Navigate to="/check-bills" />} />
 
-          ) : (
+              </>
 
-            <>
+            ) : (
 
-              <Route path="/login" element={<Login />} />
+              <>
 
-              <Route path="/signup" element={<Signup />} />
+                <Route path="/login" element={<Login />} />
 
-              <Route path="*" element={<Navigate to="/login" />} />
+                <Route path="/signup" element={<Signup />} />
 
-            </>
+                <Route path="*" element={<Navigate to="/login" />} />
 
-          )}
+              </>
 
-        </Routes>
+            )}
+
+          </Routes>
+
+        </div>
 
       </div>
     </>
