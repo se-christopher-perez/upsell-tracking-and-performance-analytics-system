@@ -1,6 +1,7 @@
 
 
 import { React } from "react";
+import InteractionCard from "./InteractionCard";
 
 
 function ItemCard({ item }) {
@@ -24,6 +25,16 @@ function ItemCard({ item }) {
 
                 </div>
 
+                <div className="main-interaction-container">
+
+                    {item.interactions.map((interaction) => {
+
+                        return <InteractionCard key={interaction.id} interaction={interaction}/>
+
+                    })}
+
+                </div>
+                
             </div>
 
         </>
