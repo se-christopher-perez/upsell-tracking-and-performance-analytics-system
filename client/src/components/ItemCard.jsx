@@ -12,16 +12,21 @@ function ItemCard({ item }) {
 
             <div className="item-card-container">
 
-                <div className="item-block-container">
-
-                    <h3>Item: </h3>
-                    <p>{item.item_name}     x{item.quantity}     ${item.price}</p>
-
-                </div>
+                <h3>Item: </h3>
 
                 <div className="category-container">
 
-                    <p>Category: {item.category}</p>
+                    <p><b>Category:</b> {item.category}</p>
+
+                </div>
+
+                <div className="item-block-container">
+
+                    <br />
+
+                    <p><b>{item.item_name}</b>     x{item.quantity}     ${item.price}</p>
+
+                    <br />
 
                 </div>
 
@@ -29,12 +34,12 @@ function ItemCard({ item }) {
 
                     {item.interactions.map((interaction) => {
 
-                        return <InteractionCard key={interaction.id} interaction={interaction}/>
+                        return <InteractionCard key={interaction.id} interaction={interaction} />
 
                     })}
 
                 </div>
-                
+
             </div>
 
         </>

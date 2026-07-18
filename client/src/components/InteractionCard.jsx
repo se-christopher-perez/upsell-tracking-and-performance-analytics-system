@@ -12,13 +12,15 @@ function InteractionCard({ interaction }) {
 
             <div className="interaction-card-container">
 
+                <h3>Interactions: </h3>
+
                 <div className="interaction-list-container">
 
-                    <p>Approuch: {interaction.approach}</p>
-                    <p>Repeat Customer: {interaction.customer_repeat ? "Yes" : "No"}</p>
-                    <p>Gender: {interaction.customer_gender ? "Female" : "Male"}</p>
-                    <p>Customer Carded: {interaction.customer_carded ? "Yes" : "No"}</p>
-                    <p>Upsold: {interaction.upsell ? "Yes" : "No"}</p>
+                    <p><b>Approuch:</b> {interaction.approach}</p>
+                    <p><b>Repeat Customer:</b> {interaction.customer_repeat ? "Yes" : "No"}</p>
+                    <p><b>Gender:</b> {interaction.customer_gender ? "Female" : "Male"}</p>
+                    <p><b>Customer Carded:</b> {interaction.customer_carded ? "Yes" : "No"}</p>
+                    <p><b>Upsold:</b> {interaction.upsell ? "Yes" : "No"}</p>
 
                 </div>
 

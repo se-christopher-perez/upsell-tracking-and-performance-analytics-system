@@ -242,11 +242,11 @@ function BillCard({ bill, onDelete, onUpdate }) {
 
                     <div className="bill-tips-total-container">
 
-                        <p>Total: {bill.total}</p>
+                        <p><b>Total:</b> {bill.total}</p>
 
-                        <p>Tip: {bill.tip}</p>
+                        <p><b>Tip:</b> {bill.tip}</p>
 
-                        <p>Date: {bill.created_at}</p>
+                        <p><b>Date:</b> {bill.created_at}</p>
 
                     </div>
 
