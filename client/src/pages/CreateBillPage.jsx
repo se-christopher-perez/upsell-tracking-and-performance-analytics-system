@@ -10,7 +10,7 @@ function CreateBill() {
   const [tip, setTip] = useState(0)
 
   const [itemName, setItemName] = useState("")
-  const [category, setCategpry] = useState("")
+  const [category, setCategory] = useState("")
   const [price, setPrice] = useState(0)
   const [quantity, setQuantity] = useState(1)
 
@@ -125,6 +125,8 @@ function CreateBill() {
         <form onSubmit={handleSubmit}>
 
           <h2>Create Bill</h2>
+
+          {error && <p className="error">{error}</p>}
 
           <div className="item-container">
 
@@ -262,8 +264,6 @@ function CreateBill() {
           </div>
 
           <input type="submit" value="Create New Bill" />
-
-          {error && <p className="error">{error}</p>}
 
         </form>
 

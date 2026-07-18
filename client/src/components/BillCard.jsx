@@ -82,8 +82,8 @@ function BillCard({ bill, onDelete, onUpdate }) {
 
         const updated_bill = {
 
-            total: editedTotal,
-            tip: editedTip,
+            total: Number(editedTotal),
+            tip: Number(editedTip),
             items: [
 
                 {
@@ -91,8 +91,8 @@ function BillCard({ bill, onDelete, onUpdate }) {
                     id: bill.items[0].id,
                     item_name: editedItemName,
                     category: editedCategory,
-                    price: editedPrice,
-                    quantity: editedQuantity,
+                    price: Number(editedPrice),
+                    quantity: Number(editedQuantity),
                     interactions: [
 
                         {
@@ -141,6 +141,12 @@ function BillCard({ bill, onDelete, onUpdate }) {
 
                     setError(data.error)
 
+                    setTimeout(() => {
+
+                        setError(null)
+
+                    }, 3000)
+
                 }
 
             })
@@ -177,6 +183,8 @@ function BillCard({ bill, onDelete, onUpdate }) {
                 <div className="main-billcard-container">
 
                     <h3>Editing Bill #{bill.id}</h3>
+
+                    {error && <p className="error">{error}</p>}
 
                     <EditForm
                         editedTotal={editedTotal} setEditedTotal={setEditedTotal}
