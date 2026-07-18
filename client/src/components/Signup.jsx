@@ -11,7 +11,7 @@ function Signup() {
 
     const [error, setError] = useState(null)
 
-    function handleSubmit() {
+    function handleSubmit(e) {
 
         e.preventDefault()
 
@@ -67,7 +67,7 @@ function Signup() {
 
                             <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
 
-                            <input type="submit" value="Login" />
+                            <input type="submit" value="Sign Up" />
 
                             {error && <p className="error">{error}</p>}
 
@@ -84,3 +84,5 @@ function Signup() {
     )
 
 }
+
+export default Signup

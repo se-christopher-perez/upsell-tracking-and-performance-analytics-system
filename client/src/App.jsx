@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { useAuth } from "./context/AuthContext"
 
+import Signup from "./components/Signup"
 import Login from "./components/Login";
 import Navbar from "./components/Navbar";
 
@@ -13,6 +14,8 @@ import "./App.css"
 function App() {
 
   const { user, loading } = useAuth()
+
+  const [signup, setSignup] = useState(false)
 
   if (loading) {
 
@@ -43,7 +46,15 @@ function App() {
 
         ) : (
 
-          <Login />
+          <>
+
+            {signup ? <Signup /> : <Login />}
+
+            <span>{signup ? "Already have an account?" : "Need an account?"}</span>
+
+            <span onClick={() => setSignup(!signup)}>{signup ? " Log In" : " Sign Up"}</span>
+
+          </>
 
         )}
 

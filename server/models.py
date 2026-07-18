@@ -17,14 +17,25 @@ class User(db.Model, SerializerMixin):
 
     @property
     def password_hash(self):
+
         raise AttributeError("password_hash is not readable.")
     
     @password_hash.setter
     def password_hash(self, password):
+        if not password or len(password) < 6:
+            raise ValueError("Username must be at least 3 characters")
+
         self._password_hash = bcrypt.generate_password_hash(password).decode("utf-8")
 
     def authenticate(self, password):
         return bcrypt.check_password_hash(self._password_hash, password)
+    
+    @validates('username')
+    def validate_username(self, key, value):
+        if not value or len(value) < 3:
+            raise ValueError('Username must be at least 3 characters')
+        
+        return value
 
 class Bill(db.Model, SerializerMixin):
 
@@ -40,6 +51,27 @@ class Bill(db.Model, SerializerMixin):
 
     user = db.relationship("User", back_populates="bills")
     items = db.relationship("Item", back_populates="bill", cascade="all, delete-orphan")
+
+    @validates("total")
+    def validate_total(self, key, value):
+        if value <= 0:
+            raise ValueError('total cannot be less than or equal to 0.')
+        
+        return value
+
+    @validates("tip")
+    def validate_tip(self, key, value):
+        if value < 0:
+            raise ValueError('tip cannot be less than 0.')
+        
+        return value
+
+    @validates("created_at")
+    def validate_created_at(self, key, value):
+        if not value:
+            raise ValueError('created_at cannot be blank.')
+        
+        return value
 
 class Item(db.Model, SerializerMixin):
 
