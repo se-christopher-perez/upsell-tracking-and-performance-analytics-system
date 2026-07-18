@@ -29,35 +29,36 @@ function App() {
     <>
       <div className="main-app-container">
 
-        {user ? (
+        {user && <Navbar />}
 
-          <>
+        <Routes>
 
-            <h1>Welcome, {user.username}!</h1>
-            <Navbar />
-            <Routes>
+          {user ? (
 
-              <Route path="check-bills" element={<CheckBillsPage />} />
+            <>
+              <Route path="/check-bills" element={<CheckBillsPage />} />
+
               <Route path="/create-bill" element={<CreateBillPage />} />
-              <Route path="*" element={<Navigate to="/create-bill" />} />
 
-            </Routes>
+              <Route path="*" element={<Navigate to="/check-bills" />} />
 
-          </>
+            </>
 
-        ) : (
+          ) : (
 
-          <>
+            <>
 
-            {signup ? <Signup /> : <Login />}
+              <Route path="/login" element={<Login />} />
 
-            <span>{signup ? "Already have an account?" : "Need an account?"}</span>
+              <Route path="/signup" element={<Signup />} />
 
-            <span onClick={() => setSignup(!signup)}>{signup ? " Log In" : " Sign Up"}</span>
+              <Route path="*" element={<Navigate to="/login" />} />
 
-          </>
+            </>
 
-        )}
+          )}
+
+        </Routes>
 
       </div>
     </>

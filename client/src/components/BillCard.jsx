@@ -199,7 +199,7 @@ function BillCard({ bill, onDelete, onUpdate }) {
 
                 <div className="main-billcard-container">
 
-                    <h3>Editing Bill #{bill.id}</h3>
+                    <h2>Editing Bill #{bill.id}</h2>
 
                     {error && <p className="error">{error}</p>}
 

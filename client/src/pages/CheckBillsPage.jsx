@@ -118,9 +118,17 @@ function CheckBill() {
 
           <button disabled={page === 1} onClick={() => setPage(page - 1)}>{page === 1 ? "Page 0" : page === totalPages ? `Page ${page - 1}` : `Page ${page}`}</button>
 
-          <span> {page} of {totalPages} </span>
+          <span> {page} of {totalPages === 0 ? page : totalPages} </span>
 
-          <button disabled={page === totalPages} onClick={() => setPage(page + 1)}>{page === totalPages ? "End" : `Page ${page + 1}`}</button>
+          {totalPages === 0 ? (
+
+            <><button disabled={true} >End</button></>
+
+          ) : (
+
+            <button disabled={page === totalPages} onClick={() => setPage(page + 1)}>{page === totalPages ? "End" : `Page ${page + 1}`}</button>
+
+          )}
 
         </div>
 

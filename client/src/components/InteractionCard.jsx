@@ -24,6 +24,8 @@ function InteractionCard({ interaction }) {
 
                 <div className="main-term-container">
 
+                    <h3>Terms: </h3>
+
                     {interaction.terms.map((term) => {
 
                         return <TermCard key={term.id} term={term} />

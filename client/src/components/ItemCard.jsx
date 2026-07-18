@@ -14,7 +14,7 @@ function ItemCard({ item }) {
 
                 <div className="item-block-container">
 
-                    <p><b>Item</b></p>
+                    <h3>Item: </h3>
                     <p>{item.item_name}     x{item.quantity}     ${item.price}</p>
 
                 </div>

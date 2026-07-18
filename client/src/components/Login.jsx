@@ -1,4 +1,6 @@
+
 import { React, useState } from "react";
+import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext"
 
 function Login() {
@@ -59,15 +61,23 @@ function Login() {
 
                     <form className="login-form-container" onSubmit={handleSubmit}>
 
-                        <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
+                        <label htmlFor="login-username">Username: </label><br/>
 
-                        <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                        <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} /><br/><br/>
+
+                        <label htmlFor="login-password">Password: </label><br/>
+
+                        <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} /><br/><br/>
 
                         <input type="submit" value="Login" />
 
                         {error && <p className="error">{error}</p>}
 
                     </form>
+
+                    <br/>
+
+                    <Link to="/signup">Need an account? Sign Up</Link>
 
                 </div>
 

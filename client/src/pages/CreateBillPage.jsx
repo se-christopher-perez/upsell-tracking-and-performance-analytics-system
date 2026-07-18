@@ -51,7 +51,7 @@ function CreateBill() {
 
     if (terms.length === 0) {
 
-      setError("Select at least ine term.")
+      setError("Select at least one term.")
 
       setTimeout(() => {
 
