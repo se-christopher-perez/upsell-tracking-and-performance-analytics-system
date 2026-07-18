@@ -138,8 +138,6 @@ function CreateBill() {
 
         <form onSubmit={handleSubmit}>
 
-          {error && <p className="error">{error}</p>}
-
           <div className="item-container">
 
             <h3>Item</h3>
@@ -256,6 +254,12 @@ function CreateBill() {
               })}
 
             </div>
+
+          </div>
+
+          <div>
+
+            {error && <p className="error">{error}</p>}
 
           </div>
 

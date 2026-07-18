@@ -48,8 +48,6 @@ function CheckBill() {
 
   function handleBillDelete(id) {
 
-    console.log("handleBillDelete called with id:", id)
-
     fetch(`http://localhost:5556/bills?page=${page}&per_page=2`, {
 
       headers: { "Content-Type": "application/json" },
