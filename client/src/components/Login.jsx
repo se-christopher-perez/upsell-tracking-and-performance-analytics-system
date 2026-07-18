@@ -51,7 +51,7 @@ function Login() {
 
                 <div className="login-form-container">
 
-                    <form className="form-container" onSubmit={handleSubmit}>
+                    <form className="login-form-container" onSubmit={handleSubmit}>
 
                         <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
 
