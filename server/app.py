@@ -111,9 +111,22 @@ class Bills(Resource):
 
         user_id = session.get("user_id")
         
-        bills = Bill.query.filter_by(user_id=user_id).all()
+        page = request.args.get("page", 1, type=int)
 
-        return [b.to_dict() for b in bills], 200
+        per_page = request.args.get("per_page", 10, type=int)
+
+        paginated = Bill.query.filter_by(user_id=user_id).paginate(
+            page=page, per_page=per_page, error_out=False
+        )
+
+        return {
+            
+            "bills": [b.to_dict() for b in paginated.items],
+            "total_pages": paginated.pages,
+            "current_page": paginated.page,
+            "total_bills": paginated.total
+            
+            }, 200
     
     def post(self):
 
