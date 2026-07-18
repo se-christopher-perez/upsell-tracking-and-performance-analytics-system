@@ -69,6 +69,11 @@ User -> Bill -> Item -> Interaction -> Term
 | PATCH | /bills/:id | Update a bill |
 | DELETE | /bills/:id | Delete a bill |
 
+## Test Account
+
+- **Username:** User1
+- **Password:** password1
+
 ## Screenshots
 
 ### Login
