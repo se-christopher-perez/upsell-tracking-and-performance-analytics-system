@@ -1,12 +1,25 @@
 
-.term-selected{
-
-  color: green;
-
+.terms-list-containers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
-.term-deselected{
+.term-selected {
 
-  color: red;
+  background-color: #4a90d9;
+  color: white;
+  border-radius: 16px;
+  padding: 6px 12px;
+  cursor: pointer;
 
-}
+  }
+
+ .term-deselected {
+
+  background-color: #eee;
+  border-radius: 16px;
+  padding: 6px 12px;
+  cursor: pointer;
+
+  }

@@ -61,8 +61,6 @@ function CheckBill() {
       })
       .then((data) => {
 
-        console.log("Refetched data:", data)
-
         if (data.bills.length === 0 && page > 1) {
 
           setPage(page - 1)
