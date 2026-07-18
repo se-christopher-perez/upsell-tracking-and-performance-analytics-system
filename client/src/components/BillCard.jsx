@@ -1,10 +1,49 @@
 
 
-import { React } from "react";
+import { React, useState } from "react";
 import ItemCard from "./ItemCard";
 
 
-function BillCard({ bill }) {
+function BillCard({ bill, onDelete }) {
+
+    const [deleted, setDeleted] = useState(false)
+
+    function handleDelete(){
+
+        fetch(`http://localhost:5556/bills/${bill.id}`, {
+
+            method: "DELETE",
+            credentials: "include"
+
+        })
+        .then((r) => {
+
+            if (r.ok) {
+
+                setDeleted(true)
+
+                setTimeout(() => {
+
+                    onDelete(bill.id)
+
+                }, 3000)
+
+            }
+
+        })
+        .catch((err) => {
+
+            console.log(err.message)
+
+        })
+
+    }
+
+    if (deleted) {
+
+        return <p><b>Deleted</b></p>
+
+    }
 
     return (
 
@@ -45,6 +84,13 @@ function BillCard({ bill }) {
                     })}
 
                 </div>
+
+            </div>
+
+            <div>
+
+                <button>Edit</button>
+                <button onClick={handleDelete}>Delete</button>
 
             </div>
 

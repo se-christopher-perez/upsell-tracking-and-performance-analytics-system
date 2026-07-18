@@ -39,6 +39,12 @@ function CheckBill() {
 
   }, [])
 
+  function handleBillDelete(id) {
+
+    setBills((prevBills) => prevBills.filter((bill) => bill.id !== id))
+
+  }
+
   if (loading) {
     return <p>Loading...</p>
   }
@@ -55,7 +61,7 @@ function CheckBill() {
 
           {bills.map((bill) => {
 
-            return <BillCard key={bill.id} bill={bill} />
+            return <BillCard key={bill.id} bill={bill} onDelete={handleBillDelete}/>
 
           })}
 
