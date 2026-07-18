@@ -102,77 +102,77 @@ with app.app_context():
 
     interaction_1 = Interaction(
         item_id = item_1.id, approach = "friendly", upsell = True, feedback = "positive",
-        customer_gender = "male", customer_carded = False, customer_repeat = True
+        customer_gender = True, customer_carded = False, customer_repeat = True
     )
 
     interaction_2 = Interaction(
         item_id =item_2.id, approach ="casual", upsell =False, feedback ="positive",
-        customer_gender ="female", customer_carded =True, customer_repeat =False
+        customer_gender =True, customer_carded =True, customer_repeat =False
     )
 
     interaction_3 = Interaction(
         item_id = item_3.id, approach = "robotic", upsell = True, feedback = "neutral",
-        customer_gender = "female", customer_carded = False, customer_repeat = True
+        customer_gender = True, customer_carded = False, customer_repeat = True
     )
 
     interaction_4 = Interaction(
         item_id = item_4.id, approach = "scripted", upsell = False, feedback = "negative",
-        customer_gender = "male", customer_carded = True, customer_repeat = False
+        customer_gender = False, customer_carded = True, customer_repeat = False
     )
 
     interaction_5 = Interaction(
         item_id = item_5.id, approach = "humor", upsell = True, feedback = "positive",
-        customer_gender = "male", customer_carded = True, customer_repeat = True
+        customer_gender = True, customer_carded = True, customer_repeat = True
     )
 
     interaction_6 = Interaction(
         item_id = item_6.id, approach = "honesty", upsell = True, feedback = "positive",
-        customer_gender = "female", customer_carded = True, customer_repeat = False
+        customer_gender = True, customer_carded = True, customer_repeat = False
     )
 
     interaction_7 = Interaction(
         item_id = item_7.id, approach = "friendly", upsell = False, feedback = "neutral",
-        customer_gender = "female", customer_carded = False, customer_repeat = True
+        customer_gender = True, customer_carded = False, customer_repeat = True
     )
 
     interaction_8 = Interaction(
         item_id = item_8.id, approach = "casual", upsell = True, feedback = "positive",
-        customer_gender = "male", customer_carded = False, customer_repeat = False
+        customer_gender = False, customer_carded = False, customer_repeat = False
     )
 
     interaction_9 = Interaction(
         item_id = item_9.id, approach = "robotic", upsell = False, feedback = "negative",
-        customer_gender = "male", customer_carded = True, customer_repeat = False
+        customer_gender = False, customer_carded = True, customer_repeat = False
     )
 
     interaction_10 = Interaction(
         item_id = item_10.id, approach = "scripted", upsell = True, feedback = "positive",
-        customer_gender = "female", customer_carded = True, customer_repeat = True
+        customer_gender = False, customer_carded = True, customer_repeat = True
     )
 
     interaction_11 = Interaction(
         item_id = item_11.id, approach = "humor", upsell = True, feedback = "positive",
-        customer_gender = "male", customer_carded = False, customer_repeat = True
+        customer_gender = True, customer_carded = False, customer_repeat = True
     )
 
     interaction_12 = Interaction(
         item_id = item_12.id, approach = "honesty", upsell = False, feedback = "neutral",
-        customer_gender = "female", customer_carded = True, customer_repeat = False
+        customer_gender = True, customer_carded = True, customer_repeat = False
     )
 
     interaction_13 = Interaction(
         item_id = item_13.id, approach = "friendly", upsell = True, feedback = "positive",
-        customer_gender = "male", customer_carded = True, customer_repeat = True
+        customer_gender = False, customer_carded = True, customer_repeat = True
     )
 
     interaction_14 = Interaction(
         item_id = item_14.id, approach = "casual", upsell = False, feedback = "positive",
-        customer_gender = "female", customer_carded = False, customer_repeat = False
+        customer_gender = False, customer_carded = False, customer_repeat = False
     )
 
     interaction_15 = Interaction(
         item_id = item_15.id, approach = "robotic", upsell = True, feedback = "negative",
-        customer_gender = "male", customer_carded = True, customer_repeat = False
+        customer_gender = False, customer_carded = True, customer_repeat = False
     )
 
     db.session.add_all([

@@ -15,7 +15,7 @@ function InteractionCard({ interaction }) {
                 <div className="interaction-list-container">
 
                     <p>Approuch: {interaction.approach}</p>
-                    <p>Repeat Customer: {interaction.customer ? "Yes" : "No"}</p>
+                    <p>Repeat Customer: {interaction.customer_repeat ? "Yes" : "No"}</p>
                     <p>Gender: {interaction.customer_gender ? "Female" : "Male"}</p>
                     <p>Customer Carded: {interaction.customer_carded ? "Yes" : "No"}</p>
                     <p>Upsold: {interaction.upsell ? "Yes" : "No"}</p>

@@ -2,7 +2,7 @@
 import { React } from "react";
 
 
-function EditForm({ editedTotal, setEditedTotal, editedTip, setEditedTip, editedItemName, 
+function EditForm({ editedTip, setEditedTip, editedItemName, 
     setEditedItemName, editedCategory, setEditedCategory, editedPrice, setEditedPrice, 
     editedQuantity, setEditedQuantity, editedTerms, updateTermText, foodTerms, handleCancel }) {
 
@@ -11,10 +11,6 @@ function EditForm({ editedTotal, setEditedTotal, editedTip, setEditedTip, edited
         <>
 
             <div className="main-billcard-container">
-
-                <label htmlFor="edit-total">Total: </label>
-
-                <input id="edit-total" type="number" value={editedTotal} onChange={(e) => setEditedTotal(e.target.value)} />
 
                 <label htmlFor="edit-tip">Tip: </label>
 

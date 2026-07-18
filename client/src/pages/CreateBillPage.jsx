@@ -15,7 +15,7 @@ function CreateBill() {
   const [quantity, setQuantity] = useState(1)
 
   const [approach, setApproach] = useState("")
-  const [customerGender, setCustomerGender] = useState("")
+  const [customerGender, setCustomerGender] = useState(true)
   const [upsell, setUpsell] = useState(false)
   const [customerCarded, setCustomerCarded] = useState(false)
   const [customerRepeat, setCustomerRepeat] = useState(false)
@@ -54,7 +54,7 @@ function CreateBill() {
       setError("Select at least ine term.")
 
       setTimeout(() => {
-        
+
         setError(null)
 
       }, 3000)
@@ -67,8 +67,8 @@ function CreateBill() {
 
     const new_bill = {
 
-      total: total,
-      tip: tip,
+      total: Number(total),
+      tip: Number(tip),
       created_at: new Date().toISOString().split("T")[0],
       items: [
         {
@@ -213,12 +213,9 @@ function CreateBill() {
 
             <div className="interaction-customer-gender-container">
 
-              <label htmlFor="interactaction-customer-gender">Customer Gender: </label>
+              <label htmlFor="interactaction-customer-gender">Female? </label>
 
-              <select id="interactaction-customer-gender" value={customerGender} onChange={(e) => setCustomerGender(e.target.value)}   >
-                <option value="male">male</option>
-                <option value="female">female</option>
-              </select>
+              <input id="interactaction-customer-gender" type="checkbox" checked={customerGender} onChange={(e) => setCustomerGender(e.target.checked)} />
 
             </div>
 

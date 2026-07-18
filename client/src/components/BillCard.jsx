@@ -12,7 +12,6 @@ function BillCard({ bill, onDelete, onUpdate }) {
 
     const [error, setError] = useState(null)
 
-    const [editedTotal, setEditedTotal] = useState(bill.total)
     const [editedTip, setEditedTip] = useState(bill.tip)
 
     const [editedItemName, setEditedItemName] = useState(bill.items[0].item_name)
@@ -69,8 +68,6 @@ function BillCard({ bill, onDelete, onUpdate }) {
     }
 
     function handleCancel() {
-
-        setEditedTotal(bill.total)
 
         setEditedTip(bill.tip)
 
@@ -207,7 +204,6 @@ function BillCard({ bill, onDelete, onUpdate }) {
                     {error && <p className="error">{error}</p>}
 
                     <EditForm
-                        editedTotal={editedTotal} setEditedTotal={setEditedTotal}
                         editedTip={editedTip} setEditedTip={setEditedTip}
                         editedItemName={editedItemName} setEditedItemName={setEditedItemName}
                         editedCategory={editedCategory} setEditedCategory={setEditedCategory}

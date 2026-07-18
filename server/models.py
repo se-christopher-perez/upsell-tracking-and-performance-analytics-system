@@ -23,7 +23,7 @@ class User(db.Model, SerializerMixin):
     @password_hash.setter
     def password_hash(self, password):
         if not password or len(password) < 6:
-            raise ValueError("password must be at least 6 characters")
+            raise ValueError("Password must be at least 6 characters")
 
         self._password_hash = bcrypt.generate_password_hash(password).decode("utf-8")
 
@@ -55,21 +55,21 @@ class Bill(db.Model, SerializerMixin):
     @validates("total")
     def validate_total(self, key, value):
         if value <= 0:
-            raise ValueError("total cannot be less than or equal to 0.")
+            raise ValueError("Total cannot be less than or equal to 0.")
         
         return value
 
     @validates("tip")
     def validate_tip(self, key, value):
         if value < 0:
-            raise ValueError("tip cannot be less than 0.")
+            raise ValueError("Tip cannot be less than 0.")
         
         return value
 
     @validates("created_at")
     def validate_created_at(self, key, value):
         if not value:
-            raise ValueError("created_at cannot be blank.")
+            raise ValueError("Date cannot be blank.")
         
         return value
 
@@ -92,28 +92,28 @@ class Item(db.Model, SerializerMixin):
     @validates("item_name")
     def validate_item_name(self, key, value):
         if not value or not value.strip():
-            raise ValueError("item_name cannot be blank.")
+            raise ValueError("Item cannot be blank.")
         
         return value.strip()
     
     @validates("category")
     def validate_category(self, key, value):
         if not value or not value.strip():
-            raise ValueError("category cannot be blank.")
+            raise ValueError("Category cannot be blank.")
         
         return value.strip()
 
     @validates("price")
     def validate_price(self, key, value):
         if value <= 0:
-            raise ValueError("price cannot be less than or equal to 0.")
+            raise ValueError("Price cannot be less than or equal to 0.")
         
         return value
 
     @validates("quantity")
     def validate_quantity(self, key, value):
         if value <= 0:
-            raise ValueError("quantity cannot be less than or equal to 0.")
+            raise ValueError("Quantity cannot be less than or equal to 0.")
         
         return value
 
@@ -128,7 +128,7 @@ class Interaction(db.Model, SerializerMixin):
     approach = db.Column(db.String)
     upsell = db.Column(db.Boolean)
     feedback = db.Column(db.String)
-    customer_gender = db.Column(db.String)
+    customer_gender = db.Column(db.Boolean)
     customer_carded = db.Column(db.Boolean)
     customer_repeat = db.Column(db.Boolean)
 
@@ -138,28 +138,34 @@ class Interaction(db.Model, SerializerMixin):
     @validates("approach")
     def validate_approach(self, key, value):
         if not value or not value.strip():
-            raise ValueError("approach cannot be blank.")
+            raise ValueError("Approach cannot be blank.")
     
         return value.strip()
 
     @validates("upsell")
     def validate_upsell(self, key, value):
         if not isinstance(value, bool):
-            raise ValueError("upsell must be boolean.")
+            raise ValueError("Upsell must be boolean.")
     
+        return value
+    
+    @validates("customer_gender")
+    def validate_customer_gender(self, key, value):
+        if not isinstance(value, bool):
+            raise ValueError("Gender must be boolean.")
         return value
 
     @validates("customer_carded")
     def validate_customer_carded(self, key, value):
         if not isinstance(value, bool):
-            raise ValueError("customer_carded must be boolean.")
+            raise ValueError("Carded must be boolean.")
     
         return value
 
     @validates("customer_repeat")
     def validate_customer_repeat(self, key, value):
         if not isinstance(value, bool):
-            raise ValueError("customer_repeat must be boolean.")
+            raise ValueError("Repeat must be boolean.")
         
         return value
 
@@ -178,6 +184,6 @@ class Term(db.Model, SerializerMixin):
     @validates("term")
     def validate_term(self, term, value):
         if not value or not value.strip():
-            raise ValueError("term cannot be blank.")
+            raise ValueError("Term cannot be blank.")
         
         return value.strip()
