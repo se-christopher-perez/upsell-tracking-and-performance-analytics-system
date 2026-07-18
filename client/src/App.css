@@ -201,7 +201,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
+
   padding: 8px 0 0 0;
   border-top: 1px solid #e0e0e0;
   margin-top: 8px;
@@ -231,4 +231,130 @@ body {
   font-size: 11px;
   color: #666;
   
+}
+
+.main-billcard-container.editing {
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+}
+ 
+.main-billcard-container label {
+
+  font-size: 11px;
+  font-weight: 600;
+  color: #555;
+  display: block;
+  margin-bottom: 2px;
+
+}
+ 
+.main-billcard-container input[type="text"],
+.main-billcard-container input[type="number"],
+.main-billcard-container select {
+
+  width: 100%;
+  box-sizing: border-box;
+  padding: 6px 8px;
+  margin-bottom: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 12px;
+
+}
+ 
+.main-billcard-container input:focus,
+.main-billcard-container select:focus {
+
+  outline: none;
+  border-color: #4a90d9;
+
+}
+ 
+.edit-terms-container {
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 8px;
+
+}
+ 
+.edit-terms-container select {
+
+  width: auto;
+  min-width: 90px;
+  margin-bottom: 0;
+  background-color: #e8eef5;
+  border-color: #cdd9e8;
+
+}
+
+.main-term-container {
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  margin-top: 6px;
+
+}
+
+.main-term-container::before {
+
+  font-weight: 600;
+  font-size: 12px;
+  color: #2c5282;
+  margin-right: 4px;
+
+}
+
+.term-card-container {
+
+  display: inline;
+
+}
+
+.term-list-container {
+
+  display: inline;
+
+}
+
+.term-list-container p {
+  margin: 0;
+  padding: 3px 8px;
+  background-color: #e8eef5;
+  border-radius: 12px;
+  font-size: 11px;
+  color: #2c5282;
+}
+
+.save-button,
+.cancel-button {
+
+  padding: 6px 14px;
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+  margin-top: 6px;
+  margin-right: 6px;
+
+}
+
+.save-button {
+
+  background-color: #4a90d9;
+  color: white;
+
+}
+
+.cancel-button {
+
+  background-color: #999;
+  color: white;
+
 }

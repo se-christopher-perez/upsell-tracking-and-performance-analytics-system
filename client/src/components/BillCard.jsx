@@ -215,8 +215,8 @@ function BillCard({ bill, onDelete, onUpdate }) {
                         handleCancel={handleCancel}
                     />
 
-                    <button onClick={() => handleSave()}>Save</button>
-                    <button onClick={() => handleCancel()}>Cancel</button>
+                    <button className="save-button" onClick={() => handleSave()}>Save</button>
+                    <button className="cancel-button" onClick={() => handleCancel()}>Cancel</button>
 
                 </div>
 
