@@ -149,13 +149,6 @@ class Interaction(db.Model, SerializerMixin):
     
         return value
 
-    @validates("customer_gender")
-    def validate_customer_gender(self, key, value):
-        if not value or value.lower().strip() not in ["female", "male"]:
-            raise ValueError("Gender must be female or male.")
-        
-        return value.strip()
-
     @validates("customer_carded")
     def validate_customer_carded(self, key, value):
         if not isinstance(value, bool):

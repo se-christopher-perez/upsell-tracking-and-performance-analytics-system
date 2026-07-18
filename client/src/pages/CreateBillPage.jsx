@@ -49,6 +49,20 @@ function CreateBill() {
 
     e.preventDefault()
 
+    if (terms.length === 0) {
+
+      setError("Select at least ine term.")
+
+      setTimeout(() => {
+        
+        setError(null)
+
+      }, 3000)
+
+      return
+
+    }
+
     const total = price * quantity
 
     const new_bill = {
@@ -202,7 +216,6 @@ function CreateBill() {
               <label htmlFor="interactaction-customer-gender">Customer Gender: </label>
 
               <select id="interactaction-customer-gender" value={customerGender} onChange={(e) => setCustomerGender(e.target.value)}   >
-                <option value="">Select gender</option>
                 <option value="male">male</option>
                 <option value="female">female</option>
               </select>

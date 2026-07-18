@@ -74,6 +74,26 @@ function BillCard({ bill, onDelete, onUpdate }) {
 
         setEditedTip(bill.tip)
 
+        setEditedItemName(bill.items[0].item_name)
+
+        setEditedCategory(bill.items[0].category)
+
+        setEditedPrice(bill.items[0].price)
+
+        setEditedQuantity(bill.items[0].quantity)
+
+        setEditedApproach(interaction.approach)
+
+        setEditedGender(interaction.customer_gender)
+
+        setEditedUpsell(interaction.upsell)
+
+        setEditedCarded(interaction.customer_carded)
+
+        setEditedRepeat(interaction.customer_repeat)
+
+        setEditedFeedback(interaction.feedback)
+
         setIsEditing(false)
 
     }
@@ -82,7 +102,7 @@ function BillCard({ bill, onDelete, onUpdate }) {
 
         const updated_bill = {
 
-            total: Number(editedTotal),
+            total: Number(editedPrice * editedQuantity),
             tip: Number(editedTip),
             items: [
 
@@ -200,7 +220,7 @@ function BillCard({ bill, onDelete, onUpdate }) {
                     />
 
                     <button onClick={() => handleSave()}>Save</button>
-                    <button onClick={() => setIsEditing(false)}>Cancel</button>
+                    <button onClick={() => handleCancel()}>Cancel</button>
 
                 </div>
 

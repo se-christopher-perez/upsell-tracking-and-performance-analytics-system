@@ -46,7 +46,41 @@ function CheckBill() {
 
   function handleBillDelete(id) {
 
-    setBills((prevBills) => prevBills.filter((bill) => bill.id !== id))
+    console.log("handleBillDelete called with id:", id)
+
+    fetch(`http://localhost:5556/bills?page=${page}&per_page=2`, {
+
+      headers: { "Content-Type": "application/json" },
+      credentials: "include"
+
+    })
+      .then((r) => {
+
+        return r.json()
+
+      })
+      .then((data) => {
+
+        console.log("Refetched data:", data)
+
+        if (data.bills.length === 0 && page > 1) {
+
+          setPage(page - 1)
+
+        } else {
+
+          setBills(data.bills)
+
+          setTotalPages(data.total_pages)
+
+        }
+
+      })
+      .catch((err) => {
+
+        console.log(err.message)
+
+      })
 
   }
 
@@ -78,7 +112,7 @@ function CheckBill() {
 
         </div>
 
-        <br/>
+        <br />
 
         <div className="pagination-controls-container">
 
