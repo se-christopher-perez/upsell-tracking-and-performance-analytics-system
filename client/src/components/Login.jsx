@@ -37,6 +37,12 @@ function Login() {
 
                     setError(data.error)
 
+                    setTimeout(() => {
+
+                        setError(null)
+
+                    }, 3000)
+
                 }
             })
             .catch((err) => setError("Something went wrong"))

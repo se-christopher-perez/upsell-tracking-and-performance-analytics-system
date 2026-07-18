@@ -52,15 +52,15 @@ class Signup(Resource):
         if not username or not password:
             return {"error": "username and password are required"}, 422
 
-        user = User (
-            
-            username = username
-
-        )
-
-        user.password_hash = password
-
         try:
+
+            user = User (
+            
+                username = username
+
+            )
+
+            user.password_hash = password
 
             db.session.add(user)
             db.session.commit()
@@ -69,8 +69,15 @@ class Signup(Resource):
 
             return user.to_dict(), 201
         
+        except ValueError as error:
+            db.session.rollback()
+
+            return {"error": str(error)}, 422
+
         except IntegrityError:
-            return {"error": "422 Inprocessable Entity"}, 422
+            db.session.rollback()
+
+            return {"error": "username taken."}, 422
 
 class Login(Resource):
 
