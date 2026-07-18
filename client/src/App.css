@@ -103,6 +103,19 @@ body {
 
 }
 
+.logout-button-container{
+
+  text-align: center;
+
+}
+
+.logout{
+
+  color: red;
+  cursor: pointer;
+
+}
+
 .main-checkbill-container {
 
   display: flex;

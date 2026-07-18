@@ -114,7 +114,7 @@ function CheckBill() {
 
         <div className="pagination-controls-container">
 
-          <button disabled={page === 1} onClick={() => setPage(page - 1)}>{page === 1 ? "Page 0" : page === totalPages ? `Page ${page - 1}` : `Page ${page}`}</button>
+          <button disabled={page === 1} onClick={() => setPage(page - 1)}>{page === 1 ? "Page 0" : `Page ${page - 1}`}</button>
 
           <span> {page} of {totalPages === 0 ? page : totalPages} </span>
 

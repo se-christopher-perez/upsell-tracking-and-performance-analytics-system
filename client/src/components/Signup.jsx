@@ -68,11 +68,11 @@ function Signup() {
 
                             <label htmlFor="signup-username">Username: </label><br />
 
-                            <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} /><br /><br />
+                            <input id="signup-username" type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} /><br /><br />
 
                             <label htmlFor="signup-password">Password: </label><br />
 
-                            <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} /><br /><br />
+                            <input id="signup-password" type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} /><br /><br />
 
                             <input type="submit" value="Sign Up" />
 

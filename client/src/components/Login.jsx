@@ -63,11 +63,11 @@ function Login() {
 
                         <label htmlFor="login-username">Username: </label><br />
 
-                        <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} /><br /><br />
+                        <input id="login-username" type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} /><br /><br />
 
                         <label htmlFor="login-password">Password: </label><br />
 
-                        <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} /><br /><br />
+                        <input id="login-password" type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} /><br /><br />
 
                         <input type="submit" value="Login" />
 

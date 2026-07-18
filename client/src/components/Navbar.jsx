@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom"
 
 function Navbar() {
 
-    const { setUser } = useAuth()
+    const { user, setUser } = useAuth()
 
     function handleLogout() {
 
@@ -15,14 +15,14 @@ function Navbar() {
             credentials: "include"
 
         })
-        .then((r) => {
-            if(r.ok) {
+            .then((r) => {
+                if (r.ok) {
 
-                setUser(null)
+                    setUser(null)
 
-            }
-        })
-        .catch((err) => console.log(err))
+                }
+            })
+            .catch((err) => console.log(err))
 
     }
 
@@ -31,20 +31,20 @@ function Navbar() {
 
         <>
 
+            <div className="logout-button-container">
+
+                <p><b>{user.username}</b> | <b className="logout" onClick={handleLogout} >Logout</b></p>
+
+            </div>
+
             <div className="main-navbar-container">
-
-                <div className="logout-button-container">
-
-                    <button onClick={handleLogout}>Logout</button>
-
-                </div>
 
                 <div>
 
                     <nav>
 
-                        <NavLink to="create-bill">Create a Bill</NavLink>
-                        <NavLink to="check-bills">Check Bills</NavLink>
+                        <NavLink to="/create-bill">Create a Bill</NavLink>
+                        <NavLink to="/check-bills">Check Bills</NavLink>
 
                     </nav>
 
